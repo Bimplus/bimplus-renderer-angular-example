@@ -1,0 +1,9 @@
+<h2 class="main-title">
+  Allplan Bimplus Projects
+</h2>
+
+<div class="projects-list">
+  <div class="project-card" *ngFor="let project of projects">
+    <button (click)="onExplore(project)">{{project.name}}</button>
+  </div>
+</div>

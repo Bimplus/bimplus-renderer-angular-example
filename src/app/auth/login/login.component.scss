@@ -1,0 +1,17 @@
+.login-main-container{
+  width: 300px;
+  margin: 30px auto auto auto;
+}
+
+h2{
+  text-align: center;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+
+  input, button{
+    margin: 10px;
+  }
+}
