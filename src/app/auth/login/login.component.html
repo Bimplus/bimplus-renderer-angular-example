@@ -1,27 +1,15 @@
 <div class="login-main-container">
   <h2>Login to Allplan Bimplus</h2>
-  <form
-  class="login-form"
-  [formGroup]="loginForm" 
-  (ngSubmit)="onSubmit()" >      
+  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
     <!-- email  -->
-    <input 
-      type="email" 
-      placeholder="Your email" 
-      formControlName="email">
+    <input type="email" placeholder="Your email" formControlName="email" required>
 
     <!-- password -->
-    <input 
-      type="password" 
-      placeholder="Your password" 
-      formControlName="password">
+    <input type="password" placeholder="Your password" formControlName="password" required>
 
     <!-- submit button -->
-    <button
-      *ngIf="!isLoading" 
-      type="submit" 
-      [disabled]="loginForm.invalid">Submit</button>
+    <button *ngIf="!isLoading" type="submit" [disabled]="loginForm.invalid">Submit</button>
 
   </form>
 </div>

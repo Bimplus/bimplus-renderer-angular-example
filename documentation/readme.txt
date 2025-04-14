@@ -35,7 +35,7 @@ How to work with Bimplus WebSdk (see file api.service.ts in this example):
   import * as WebSdk from 'bimplus-websdk';
   
 - initialize the websdk object 
-  var environment = "dev";
+  const environment = "dev";
   this.api = new WebSdk.Api(WebSdk.createDefaultConfig(environment));    
 
 - after initialization you can use all websdk functions e.g. 
@@ -65,24 +65,22 @@ How to work with Bimplus Renderer (see file viewport.service.ts in this example)
 
 	NOTE : Please refer to bimplus renderer documentation to see JSON renderer settings options
 
-- use bimplus-renderer content loader to load project models and display it. Content loader uses bimplus-websdk object to load data. 
+- use bimplus-renderer project viewer to load project models and display it. Project viewer uses bimplus-websdk object to load data. 
   In this example we use this code to show all models in the project : 
   
-    this.loader = new Renderer.ContentLoader(this.apiService.api, this.viewport);
-    this.projectData = await this.loader.loadProject(projectId);
+    this.viewer = new Renderer.ProjectViewer(this.apiService.api, this.viewport);
+    this.project = await this.viewer.loadProject(projectId);
 
     let promises = [];
 
-    //--- show all project models -----------------------------------------------------------------------
+    // --- show all project models -----------------------------------------------------------------------
     this.projectData.forEachModel((model) => {
-      var layers = model.getLayerArray();
-      model.setVisible(true);
-      model.visible = true;
-
-      model.forEachTopologyLeafNode(node => {
-        promises.push(this.loader.loadTopologyNode(this.projectData, node, layers));
-      });
-
+      model.setCurrentRevision(model.getLatestRevision());
+      await this.viewer.loadModelStructure(model);
+      let mvs = this.viewer.getModelViewState(model.id);
+      mvs.setLayersVisible(true);
+      mvs.setLeafNodesVisible(true);
+      await this.viewer.setModelViewState(mvs);
     })
 
     await Promise.all(promises);

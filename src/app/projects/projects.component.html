@@ -1,9 +1,13 @@
-<h2 class="main-title">
-  Allplan Bimplus Projects
-</h2>
+<h2 class="main-title">Allplan Teams</h2>
+<div class="list">
+  <div class="card" *ngFor="let team of teams">
+    <button (click)="onTeamSelected(team)">{{ team.name }}</button>
+  </div>
+</div>
 
-<div class="projects-list">
-  <div class="project-card" *ngFor="let project of projects">
-    <button (click)="onExplore(project)">{{project.name}}</button>
+<h2 class="main-title">Allplan Bimplus Projects</h2>
+<div class="list">
+  <div class="card" *ngFor="let project of projects">
+    <button (click)="onOpenProject(project)">{{ project.name }}</button>
   </div>
 </div>

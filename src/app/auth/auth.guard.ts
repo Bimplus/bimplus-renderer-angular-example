@@ -1,27 +1,24 @@
-import { ApiService } from '../services/api.service';
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Router, Route } from '@angular/router';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ApiService } from '@services/api.service';
+import { Router } from '@angular/router';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanLoad{
+export class AuthGuard  {
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  constructor( private apiService: ApiService,
-                private router: Router) {}
-
-  canActivate( route: ActivatedRouteSnapshot, state : RouterStateSnapshot ){
-    if ( this.apiService.isAuthorized() ){
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-    }    
+  private async checkAuthorizationAndNavigate() {
+    const isAuthorized = this.apiService.isAuthorized();
+    if (!isAuthorized) {
+      return this.router.navigate(['/login']).then(() => false);
+    }
+    return Promise.resolve(true);
   }
 
-  canLoad( route: Route ){
-    if( this.apiService.isAuthorized() ){
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-    }
+  async canActivate() {
+    return await this.checkAuthorizationAndNavigate();
+  }
+
+  async canLoad() {
+    return await this.checkAuthorizationAndNavigate();
   }
 }

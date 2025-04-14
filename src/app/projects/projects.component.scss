@@ -3,8 +3,8 @@
   margin-top: 30px;
 }
 
-.projects-list{
-  display : grid;
+.list {
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
@@ -12,7 +12,6 @@
   margin: 1rem 3rem;
 }
 
-.project-card{
-  overflow: hidden;  
+.card {
+  overflow: hidden;
 }
-

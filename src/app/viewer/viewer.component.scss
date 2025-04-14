@@ -1,16 +1,15 @@
 // renderer
-#rendererViewport{
-  width: calc("100vw-20px");
+#rendererViewport {
+  width: calc(100vw - 20px);
   height: 80vh;
   background-color: #adadad;
 
   *:focus {
     outline: 0 !important;
   }
-}  
+}
 
-.viewer-buttons-container{
+.viewer-buttons-container {
   text-align: center;
   margin: 20px auto auto auto;
 }
-
