@@ -71,7 +71,6 @@ export class ViewportService {
     pinSizeScaleFactor: 2,
     maxWebGLBufferSize: 350e12,
     mixedModelMode: true,
-    useFrameSelection: true,
     pinFlyToDistance: 20000,
     nearClippingPlane: 0.01,
     slideThmbSize: [180, 112],
@@ -79,6 +78,12 @@ export class ViewportService {
       mm: this.metricUnits,
       inch: {},
     },
+
+    // Enable usage of frame selecton
+    //   BlueBlue:    (LEFT  MOUSE BUTTON) + SHIFT key
+    //   GreenGreen:  (LEFT  MOUSE BUTTON) + CTRL key
+    //                (RIGHT MOUSE BUTTON) + CTRL key
+    useFrameSelection: true,
   };
 
   units = {
