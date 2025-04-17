@@ -109,7 +109,7 @@ export class ViewportService {
     this.viewport = new Renderer.Viewport3D({
       settings: this.viewportSettings,
       units: this.units.Metric,
-      domElementId,
+      domElementId: domElementId,
       GPUPick: true,
       api: this.apiService.api,
       name: this.viewportName,
@@ -214,5 +214,14 @@ export class ViewportService {
     });
 
     return decoratedModels;
+  }
+
+  // --------------------------------------------------------------------------
+  // toggle camera type
+  // --------------------------------------------------------------------------
+  toggleCameraType() {
+    if (this.viewport) {
+      this.viewport.toggleProjectionMode(this.viewport);
+    }
   }
 }

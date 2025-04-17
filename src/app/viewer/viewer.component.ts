@@ -70,4 +70,12 @@ export class ViewerComponent implements OnInit {
   onResetView() {
     this.viewportService.resetView();
   }
+
+  // --------------------------------------------------------------------------
+  // Toggle camera type
+  // --------------------------------------------------------------------------
+  onToggleCameraType() {
+    this.viewportService.toggleCameraType();
+  }
+
 }
