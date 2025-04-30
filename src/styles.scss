@@ -4,3 +4,34 @@ html,
 body {
   font-family: "Arial", sans-serif;
 }
+
+
+// Target common input elements
+input, select, textarea, button {
+  font-size: 0.85rem;
+  padding: 4px 8px;
+  height: auto;
+}
+
+// Target Angular Material components (if you're using Material)
+.mat-button, .mat-raised-button, .mat-flat-button, .mat-stroked-button {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  min-height: unset;
+  min-width: unset;
+}
+
+.mat-form-field {
+  font-size: 0.85rem;
+
+  .mat-form-field-infix {
+    padding: 0.2em 0;
+  }
+}
+
+// Reduce icon button sizes
+.mat-icon-button {
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+}
