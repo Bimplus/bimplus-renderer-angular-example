@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ApiService } from '@services/api.service';
 // import * as jQuery from 'jquery'; // package @types/jquery
 import * as Renderer from 'bimplus-renderer';
@@ -10,6 +10,8 @@ import $ from 'jquery';
   providedIn: 'root',
 })
 export class ViewportService {
+  private apiService = inject(ApiService);
+
   // --- renderer stuff -----------------------------------------------------------------------
   viewport!: Renderer.Viewport3D | null;
   viewer!: Renderer.ProjectViewer | null;
@@ -92,8 +94,6 @@ export class ViewportService {
   };
 
   viewportName: string = "mainRendererViewport";
-
-  constructor(private apiService: ApiService) { }
 
   // --------------------------------------------------------------------------
   // get viewport object

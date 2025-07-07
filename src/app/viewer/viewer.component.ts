@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, inject } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ViewportService } from '@services/viewport.service';
 import { ApiService } from '@services/api.service';
@@ -12,19 +12,17 @@ import * as Renderer from 'bimplus-renderer';
   standalone: true,
 })
 export class ViewerComponent implements OnInit {
+  private apiService = inject(ApiService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private viewportService = inject(ViewportService);
+
 
   // Use HostListener to listen for window resize events
   @HostListener('window:resize', ['$event'])
   onResize(/*event: any*/) {
     this.viewportService.updateSize();
   }
-
-  constructor(
-    private apiService: ApiService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private viewportService: ViewportService
-  ) { }
 
   projectId: string = '';
   projectName: string = '';

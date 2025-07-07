@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, Validators, FormControl, FormGroup } from '@angular/forms';
@@ -11,11 +11,12 @@ import { ApiService } from '@services/api.service';
     imports: [ReactiveFormsModule, NgIf]
 })
 export class LoginComponent implements OnInit {
+  private apiService = inject(ApiService);
+  private router = inject(Router);
+
   loginForm: FormGroup;
 
   isLoading = false;
-
-  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({

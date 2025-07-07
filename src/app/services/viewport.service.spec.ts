@@ -1,4 +1,6 @@
+import { TestBed } from '@angular/core/testing';
 import { ViewportService } from '@services/viewport.service';
+import { ApiService } from '@services/api.service';
 import * as Renderer from 'bimplus-renderer';
 
 describe('ViewportService', () => {
@@ -10,12 +12,21 @@ describe('ViewportService', () => {
 
   beforeEach(() => {
     const apiServiceSpy = jasmine.createSpyObj('ApiService', ['api']);
+
+    TestBed.configureTestingModule({
+      providers: [
+        ViewportService,
+        { provide: ApiService, useValue: apiServiceSpy },
+      ],
+    });
+
+    viewportService = TestBed.inject(ViewportService);
+
     projectSpy = jasmine.createSpyObj('ProjectContent', ['forEachModel']);
     viewerSpy = jasmine.createSpyObj('ProjectViewer', ['loadProject', 'loadModelStructure', 'getModelViewState', 'setModelViewState']);
     viewportSpy = jasmine.createSpyObj('Viewport3D', ['setViewportSize', 'resetSelectionMode', 'restoreViewbox', 'resetClashScene', 'setRotationCenter', 'setCameraResetAxis', 'setSectionAxis', 'draw',]);
     projectModelSpy = jasmine.createSpyObj('ProjectModel', ['forEachLayer', 'setCurrentRevision', 'getLatestRevision']);
 
-    viewportService = new ViewportService(apiServiceSpy);
     viewportService.project = projectSpy;
     viewportService.viewer = viewerSpy;
     viewportService.viewport = viewportSpy;

@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { ApiService } from '@services/api.service';
 import * as WebSdk from 'bimplus-websdk';
@@ -11,11 +11,12 @@ import * as WebSdk from 'bimplus-websdk';
     imports: [NgForOf]
 })
 export class ProjectsComponent implements OnInit {
+  private apiService = inject(ApiService);
+  private router = inject(Router);
+
   loading = false;
   teams: WebSdk.TeamData[];
   projects: WebSdk.Project[];
-  
-  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.loading = true;

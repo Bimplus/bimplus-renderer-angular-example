@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment';
 import * as WebSdk from 'bimplus-websdk';
@@ -7,13 +7,15 @@ import * as WebSdk from 'bimplus-websdk';
   providedIn: 'root',
 })
 export class ApiService {
+  private router = inject(Router);
+
   api = null;
 
   actTeamId: string = undefined;
   actTeamSlug: string = undefined;
   actProject: WebSdk.Project | undefined = undefined;
 
-  constructor(private router: Router) {
+  constructor() {
     // initialize bimplus websdk api. Use environment dev, stage or prod
     const websdkEnvironment = environment.websdkEnvironment;
     this.api = new WebSdk.Api(WebSdk.createDefaultConfig(websdkEnvironment));

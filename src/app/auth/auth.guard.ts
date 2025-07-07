@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ApiService } from '@services/api.service';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthGuard  {
-  constructor(private apiService: ApiService, private router: Router) {}
+  private apiService = inject(ApiService);
+  private router = inject(Router);
+
 
   private async checkAuthorizationAndNavigate() {
     const isAuthorized = this.apiService.isAuthorized();
