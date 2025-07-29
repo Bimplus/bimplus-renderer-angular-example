@@ -50,7 +50,7 @@
     "@typescript-eslint/parser": "8.35.1",
     "@typescript-eslint/types": "8.35.1",
     "@typescript-eslint/utils": "8.35.1",
-    "bimplus-renderer": "1.8.5",
+    "bimplus-renderer": "1.8.8",
     "bimplus-websdk": "^1.0.51",
     "eslint": "^9.30.1",
     "jasmine-core": "~5.8.0",
