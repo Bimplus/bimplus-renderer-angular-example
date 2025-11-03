@@ -19,27 +19,6 @@ describe('ApiService', () => {
     expect(apiService).toBeTruthy();
   });
 
-  it('should authorize user', () => {
-    const email = 'test@example.com';
-    const pw = 'pw123';
-
-    spyOn(apiService.api.authorize, 'post').and.returnValue(Promise.resolve({ access_token: 'token' }));
-
-    apiService.authorize(email, pw).then((result) => {
-      expect(result).toBeTruthy();
-    });
-  });
-
-  it('should return false when authorization fails', () => {
-    const email = 'test@example.com';
-    const pw = 'pw123';
-
-    spyOn(apiService.api.authorize, 'post').and.returnValue(Promise.reject(new Error('Authorization fails')));
-
-    apiService.authorize(email, pw).then((result) => {
-      expect(result).toBeFalsy();
-    });
-  });
 
   it('should return true if access token exists', () => {
     spyOn(apiService.api, 'getAccessToken').and.returnValue('test-access-token');

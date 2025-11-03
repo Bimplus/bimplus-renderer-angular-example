@@ -34,39 +34,4 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize login form with required fields', async () => {
-    expect(component.loginForm.get('email')).toBeTruthy();
-    expect(component.loginForm.get('email')!.hasError('required')).toBe(true);
-
-    expect(component.loginForm.get('password')).toBeTruthy();
-    expect(component.loginForm.get('password')!.hasError('required')).toBe(true);
-  });
-
-  it('should call apiService.authorize on form submission', async () => {
-    const email = 'test@example.com';
-    const pw = 'p123';
-
-    component.loginForm.patchValue({ email, password : pw });
-
-    mockApiService.authorize.and.returnValue(Promise.resolve(true));
-
-    await component.onSubmit();
-
-    expect(mockApiService.authorize).toHaveBeenCalledWith(email, pw);
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['/projects']);
-  });
-
-  it('should not navigate if authorization fails', async () => {
-    const email = 'test@example.com';
-    const pw = 'p123';
-
-    component.loginForm.patchValue({ email, password : pw});
-
-    mockApiService.authorize.and.returnValue(Promise.resolve(false));
-
-    await component.onSubmit();
-
-    expect(mockApiService.authorize).toHaveBeenCalledWith(email, pw);
-    expect(mockRouter.navigate).not.toHaveBeenCalled();
-  });
 });

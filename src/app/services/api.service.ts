@@ -22,26 +22,6 @@ export class ApiService {
   }
 
   // --------------------------------------------------------------------------
-  // authorize by email and password
-  // --------------------------------------------------------------------------
-  authorize(email: string, password: string) {
-    const appId = '5F43560D-9B0C-4F3C-85CB-B5721D098F7B';
-    return this.api.authorize
-      .post(email, password, appId)
-      .then((data: WebSdk.AuthorizeData) => {
-        console.log(`Login ok : ${JSON.stringify(data)}`);
-        this._setAuthorize(data.access_token);
-        return true;
-      })
-      .catch((error: Error) => {
-        // Authorization failed
-        alert('Login to Bimplus failed!');
-        console.error(error);
-        return false;
-      });
-  }
-
-  // --------------------------------------------------------------------------
   // check if auth is ok
   // --------------------------------------------------------------------------
   isAuthorized() {
@@ -49,7 +29,7 @@ export class ApiService {
   }
 
   // --- set auth token -----------------------------------------------------------------------
-  _setAuthorize(token: string) {
+  setAccessToken(token: string) {
     this.api.setAccessToken(token);
     localStorage.setItem('access_token', token);
   }
@@ -58,7 +38,7 @@ export class ApiService {
   // logout
   // --------------------------------------------------------------------------
   async logout() {
-    this._setAuthorize("");
+    this.setAccessToken("");
     await this.router.navigate(['/login']);
   }
 

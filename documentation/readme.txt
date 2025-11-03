@@ -38,9 +38,7 @@ How to work with Bimplus WebSdk (see file api.service.ts in this example):
   const environment = "dev";
   this.api = new WebSdk.Api(WebSdk.createDefaultConfig(environment));    
 
-- after initialization you can use all websdk functions e.g. 
-  this.api.authorize.post(email,password, appId)
-
+- after initialization you need to get a valid token via the OIDC authorization and use it for all API calls.
 
 
 How to work with Bimplus Renderer (see file viewport.service.ts in this example):

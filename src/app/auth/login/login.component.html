@@ -1,15 +1,16 @@
-<div class="login-main-container">
-  <h2>Login to Allplan Bimplus</h2>
-  <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div class="container">
+  <div class="logo">
+    <img src="assets/Allplan_Company_CMYK.svg" alt="Allplan - A Nemetschek Company" />
+  </div>
 
-    <!-- email  -->
-    <input type="email" placeholder="Your email" formControlName="email" required>
+  <div class="welcome-section">
+    <h2 class="welcome-title">Welcome to Allplan</h2>
+    <p class="welcome-subtitle">Log in to use Bimplus services</p>
+  </div>
 
-    <!-- password -->
-    <input type="password" placeholder="Your password" formControlName="password" required>
-
-    <!-- submit button -->
-    <button *ngIf="!isLoading" type="submit" [disabled]="loginForm.invalid">Submit</button>
-
-  </form>
+  <div class="auth-section">
+    <button (click)="login()" class="btn btn-primary">
+      <span class="btn-text">LOGIN</span>
+    </button>
+  </div>
 </div>
